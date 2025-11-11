@@ -1,0 +1,653 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    height: 100vh;
+    background: #f5f5f7;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    min-height: 100vh;
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Gradient Background */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: -1;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Home Screen */
+.home-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.title-section {
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.emoji-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.app-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.button-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    padding: 0 20px;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: white;
+    color: #667eea;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-large {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 20px 40px;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Icon Button */
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+}
+
+.modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 28px;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    max-height: calc(80vh - 80px);
+}
+
+/* Instruction Steps */
+.instruction-step {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.step-number {
+    min-width: 40px;
+    height: 40px;
+    background: #667eea;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.step-content h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.step-content p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.tip-box {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #667eea;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Game Screen */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.step-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* Game Content */
+.game-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.step-view {
+    width: 100%;
+    text-align: center;
+    animation: fadeInUp 0.5s ease;
+}
+
+.step-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.step-description {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.prompt-box {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.prompt-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Recording UI */
+.recording-container {
+    margin: 40px 0;
+}
+
+.icon-large {
+    font-size: 100px;
+    margin: 20px 0;
+}
+
+.timer-display {
+    margin: 30px 0;
+}
+
+.timer-value {
+    font-size: 60px;
+    font-weight: 700;
+    color: #ff4444;
+    text-shadow: 0 4px 10px rgba(255, 68, 68, 0.3);
+}
+
+.timer-label {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+}
+
+/* Waveform Animation */
+.waveform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    height: 60px;
+    margin: 20px 0;
+}
+
+.waveform-bar {
+    width: 4px;
+    background: #ff4444;
+    border-radius: 2px;
+    animation: wave 0.6s ease-in-out infinite alternate;
+}
+
+.waveform-bar:nth-child(1) { animation-delay: 0s; }
+.waveform-bar:nth-child(2) { animation-delay: 0.05s; }
+.waveform-bar:nth-child(3) { animation-delay: 0.1s; }
+.waveform-bar:nth-child(4) { animation-delay: 0.15s; }
+.waveform-bar:nth-child(5) { animation-delay: 0.2s; }
+.waveform-bar:nth-child(6) { animation-delay: 0.25s; }
+.waveform-bar:nth-child(7) { animation-delay: 0.3s; }
+.waveform-bar:nth-child(8) { animation-delay: 0.35s; }
+.waveform-bar:nth-child(9) { animation-delay: 0.4s; }
+.waveform-bar:nth-child(10) { animation-delay: 0.45s; }
+.waveform-bar:nth-child(11) { animation-delay: 0.5s; }
+.waveform-bar:nth-child(12) { animation-delay: 0.55s; }
+.waveform-bar:nth-child(13) { animation-delay: 0.6s; }
+.waveform-bar:nth-child(14) { animation-delay: 0.65s; }
+.waveform-bar:nth-child(15) { animation-delay: 0.7s; }
+.waveform-bar:nth-child(16) { animation-delay: 0.75s; }
+.waveform-bar:nth-child(17) { animation-delay: 0.8s; }
+.waveform-bar:nth-child(18) { animation-delay: 0.85s; }
+.waveform-bar:nth-child(19) { animation-delay: 0.9s; }
+.waveform-bar:nth-child(20) { animation-delay: 0.95s; }
+
+@keyframes wave {
+    from { height: 10px; }
+    to { height: 60px; }
+}
+
+/* Playing Animation */
+.playing-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 100px;
+    margin: 20px 0;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    background: #667eea;
+    border-radius: 50%;
+    animation: bounce-dot 0.6s ease-in-out infinite;
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.1s; }
+.dot:nth-child(3) { animation-delay: 0.2s; }
+.dot:nth-child(4) { animation-delay: 0.3s; }
+.dot:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes bounce-dot {
+    0%, 100% { transform: translateY(0) scale(0.5); }
+    50% { transform: translateY(-20px) scale(1.5); }
+}
+
+/* Score Display */
+.score-container {
+    margin: 40px 0;
+}
+
+.score-circle {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.score-circle svg {
+    transform: rotate(-90deg);
+}
+
+.score-circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 20;
+}
+
+.score-circle-progress {
+    fill: none;
+    stroke: url(#scoreGradient);
+    stroke-width: 20;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.score-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-value {
+    font-size: 56px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+}
+
+.score-percent {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.performance-message {
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    margin: 30px 0 10px;
+}
+
+.performance-description {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+
+/* Loading Spinner */
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Button Colors */
+.btn-blue {
+    background: #4facfe;
+    color: white;
+}
+
+.btn-red {
+    background: #ff4444;
+    color: white;
+}
+
+.btn-green {
+    background: #00d084;
+    color: white;
+}
+
+.btn-purple {
+    background: #667eea;
+    color: white;
+}
+
+.btn-orange {
+    background: #ff6b35;
+    color: white;
+}
+
+.btn-white {
+    background: white;
+    color: #667eea;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.helper-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 15px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .app-title {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+    }
+    
+    .btn-large {
+        font-size: 20px;
+        padding: 18px 35px;
+    }
+    
+    .step-title {
+        font-size: 28px;
+    }
+    
+    .prompt-text {
+        font-size: 20px;
+    }
+    
+    .timer-value {
+        font-size: 48px;
+    }
+    
+    .score-circle {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .score-value {
+        font-size: 48px;
+    }
+}
+
+/* Prevent text selection on buttons */
+.btn, .icon-btn, .step-number {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+
